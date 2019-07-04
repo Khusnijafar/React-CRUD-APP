@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import BookList from './Components/BookList';
+import BookSearch from './Components/BookSearch';
+import BookDetail from './Components/BookDetail';
+import Navbar from './Components/Navbar';
+import Button from './Components/Button';
+import Books from './tempList';
+import { Route , BrowserRouter as Router } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class MyApp extends Component {
+  constructor() {
+    super()
+    this.state = Books
+  }
 
-export default App;
+  render() {
+    return (
+        <div>
+        <Router>
+          <Route exact path={"/"} component={Navbar}/>
+          <Route exact path={"/"} component={BookSearch}/>
+          <Route exact path={"/"} component={Button}/>
+          <Route exact path={"/"} render={() => <BookList books={this.state}/>} />
+          <Route exact path={"/book/:book_id"} component={BookDetail}/>
+        </Router>
+        </div>
+    );
+  }
+};
+
+
+export default MyApp
