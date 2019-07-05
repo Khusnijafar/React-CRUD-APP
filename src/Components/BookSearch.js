@@ -2,9 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
-
 import IconButton from '@material-ui/core/IconButton';
-
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +20,6 @@ const useStyles = makeStyles({
     height:'70px',
     borderRadius:'100px',
     width:'300px',
-
   },
 });
 

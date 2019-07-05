@@ -1,44 +1,42 @@
 import React, {Component} from 'react';
-import Books from '../tempList'
+import Books from '../tempList';
 import {Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Col, Input, ModalFooter } from 'reactstrap';
 import swal from 'sweetalert';
-import queryString from 'query-string';
+import BookList from './BookList';
 
 class ButtonModal extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      books: Books,
+      buku: Books,
       modal: false,
       inputImageUrl: "",
       inputTitle: "",
       inputDescription: "",
     };
-    this.toggle = this.toggle.bind(this)
+    this.toggle = this.toggle.bind(this);
   }
 
   toggle() {
     this.setState(prevState => ({
       modal: !prevState.modal
-    }))
+    }));
   }
   prosesInput = (event) => {
     event.preventDefault()
-    let stateData = this.state.books
+    let stateData = this.state.buku
     let books = {
       book_id: this.state.book_id,
+      image_url: this.state.inputImageUrl,
       title: this.state.inputTitle,
       description: this.state.inputDescription,
-      image_url: this.state.inputImageUrl,
-      created_at: Date(),
-      updated_at: Date(),
     }
     stateData = [...stateData, books]
     this.setState({
-      books: stateData,
-      inputImageUrl: '',
-      inputTitle: '',
-      inputDescription: '',
+      buku:stateData,
+      inputImageUrl: "",
+      inputTitle: "",
+      inputDescription: ""
     })
     swal({
       title: "Insert",
@@ -46,6 +44,7 @@ class ButtonModal extends Component {
       icon: "success",
       button: "oke",
     })
+
   }
 
   changeUrl = (event) => {
@@ -69,33 +68,32 @@ class ButtonModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className="{this.props.className} modal-lg">
           <Form onSubmit={this.prosesInput}>
             <ModalHeader toggle={this.toggle}><b>Add Data</b></ModalHeader>
-                <ModalBody>
-
-                        <FormGroup row>
-                            <Label for="exampleEmail" sm={3} size="lg">Url Image</Label>
-                                <Col sm={9}>
-                                    <Input type="text" name="urlImage" id="ulrImage" placeholder="Url Image..." bsSize="lg" value={this.state.inputImageUrl} onChange={this.changeUrl} />
-                                </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Label for="exampleEmail" sm={3} size="lg">Title</Label>
-                                <Col sm={9}>
-                                    <Input type="text" name="title" id="title" placeholder="Title..." bsSize="lg" value={this.state.inputTitle} onChange={this.changeTitle} />
-                                </Col>
-                        </FormGroup>
-                        <FormGroup row>
-                            <Label for="exampleEmail" sm={3} size="lg">Description</Label>
-                                <Col sm={9}>
-                                    <Input type="textarea" name="text" id="exampleText" placeholder="Description..." value={this.state.inputDescription} onChange={this.changeDescription} />
-                                </Col>
-                            </FormGroup>
-
+              <ModalBody>
+                <FormGroup row>
+                  <Label for="exampleEmail" sm={3} size="lg">Url Image</Label>
+                    <Col sm={9}>
+                      <Input type="text" name="urlImage" id="ulrImage" placeholder="Url Image..." bsSize="lg" value={this.state.inputImageUrl} onChange={this.changeUrl} />
+                    </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Label for="exampleEmail" sm={3} size="lg">Title</Label>
+                    <Col sm={9}>
+                      <Input type="text" name="title" id="title" placeholder="Title..." bsSize="lg" value={this.state.inputTitle} onChange={this.changeTitle} />
+                    </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Label for="exampleEmail" sm={3} size="lg">Description</Label>
+                    <Col sm={9}>
+                      <Input type="textarea" name="text" id="exampleText" placeholder="Description..." value={this.state.inputDescription} onChange={this.changeDescription} />
+                    </Col>
+                  </FormGroup>
                 </ModalBody>
-            <ModalFooter>
+             <ModalFooter>
               <Button type="submit" color="primary" onClick={this.toggle}><span className="button-save">Save</span></Button>
-            </ModalFooter>
+             </ModalFooter>
             </Form>
         </Modal>
+        <BookList listBook={this.state.buku} />
       </div>
     )
   }

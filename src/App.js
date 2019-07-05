@@ -8,11 +8,6 @@ import Books from './tempList';
 import { Route , BrowserRouter as Router } from "react-router-dom";
 
 class MyApp extends Component {
-  constructor() {
-    super()
-    this.state = Books
-  }
-
   render() {
     return (
         <div>
@@ -20,7 +15,6 @@ class MyApp extends Component {
           <Route exact path={"/"} component={Navbar}/>
           <Route exact path={"/"} component={BookSearch}/>
           <Route exact path={"/"} component={Button}/>
-          <Route exact path={"/"} render={() => <BookList books={this.state}/>} />
           <Route exact path={"/book/:book_id"} component={BookDetail}/>
         </Router>
         </div>

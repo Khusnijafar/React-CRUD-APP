@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Books from '../tempList'
 import { Container, Row, Col, CardImg, CardBody, Card } from 'reactstrap';
-import '../BookList.css'
+import './BookList.css'
+
 
 function text(text) {
     if (text.length > 25) {
-      let textSplit = text.substr(0, 25)
+      let textSplit = text.substr(0, 20)
       return `${textSplit} ...`
     } else {
       let textSplit = text
@@ -13,16 +13,12 @@ function text(text) {
     }
 }
 
-class List extends Component {
-    constructor() {
-      super();
-      this.state = { book: Books};
-    }
+class BookList extends Component {
     render() {
       return(
       <Container>
        <Row>
-        {this.state.book.map((item) =>
+        {this.props.listBook.map((item) =>
         <Col md="3">
           <div className="list">
             <Card>
@@ -47,4 +43,4 @@ class List extends Component {
    }
 }
 
-export default List
+export default BookList

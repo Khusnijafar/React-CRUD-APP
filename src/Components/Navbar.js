@@ -8,7 +8,6 @@ const useStyles = makeStyles({
   root: {
     flexGrow: 2,
     boxShadow: '5px 5px 5px 5px DarkCyan',
-
   },
 });
 
