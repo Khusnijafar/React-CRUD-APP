@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import Books from '../tempList';
+import Books from '../db/tempList';
 import {Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Col, Input, ModalFooter } from 'reactstrap';
 import swal from 'sweetalert';
-import BookList from './BookList';
 
+import BookList from './BookList';
+import queryString from 'query-string';
 class ButtonModal extends Component {
   constructor() {
     super();
@@ -58,7 +59,19 @@ class ButtonModal extends Component {
   changeDescription = (event) => {
     this.setState({inputDescription: event.target.value})
   }
+  componentDidMount() {
+       let query = queryString.parse(this.props.location.search);
+       console.log(query);
+       console.log("tes");
+       if (query.delete) {
+           let dataBook =this.state.buku;
+           dataBook.splice(query.delete, 1);
 
+           this.setState({
+              buku: dataBook
+           })
+       }
+   }
   render() {
     return (
       <div>

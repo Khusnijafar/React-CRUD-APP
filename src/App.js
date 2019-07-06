@@ -1,26 +1,14 @@
 import React, {Component} from 'react';
-import BookList from './Components/BookList';
-import BookSearch from './Components/BookSearch';
-import BookDetail from './Components/BookDetail';
-import Navbar from './Components/Navbar';
-import Button from './Components/Button';
-import Books from './tempList';
-import { Route , BrowserRouter as Router } from "react-router-dom";
+import Routes from './routes/route';
 
 class MyApp extends Component {
   render() {
     return (
         <div>
-        <Router>
-          <Route exact path={"/"} component={Navbar}/>
-          <Route exact path={"/"} component={BookSearch}/>
-          <Route exact path={"/"} component={Button}/>
-          <Route exact path={"/book/:book_id"} component={BookDetail}/>
-        </Router>
+          <Routes />
         </div>
     );
   }
 };
-
 
 export default MyApp

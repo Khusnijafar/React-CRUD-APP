@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, CardImg, CardBody, Card } from 'reactstrap';
-import './BookList.css'
+import '../BookList.css'
 
 
 function text(text) {
@@ -18,12 +18,12 @@ class BookList extends Component {
       return(
       <Container>
        <Row>
-        {this.props.listBook.map((item) =>
-        <Col md="3">
+        {this.props.listBook.map((item, index) =>
+        <Col md={3}>
           <div className="list">
             <Card>
                 <div>
-                  <a href={'/book/' + item.book_id}>
+                  <a href={'/' + index}>
                     <CardImg img
                       className="img" height="400px"
                       src={item.image_url}
